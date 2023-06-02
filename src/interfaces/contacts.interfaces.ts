@@ -3,12 +3,10 @@ import { z } from "zod";
 import {
   allContactsSchema,
   requestContactsSchema,
-  updateContactsSchema,
   contactsSchema,
 } from "../schemas/contacts.schemas";
 
-export type iCreatecontacts = z.infer<typeof requestContactsSchema>;
-export type icontacts = z.infer<typeof contactsSchema>;
-type iUpdatecontactsSchema = z.infer<typeof updateContactsSchema>;
-export type iUpdatecontacts = DeepPartial<iUpdatecontactsSchema>;
-export type iAllcontacts = z.infer<typeof allContactsSchema>;
+export type iCreateContacts = z.infer<typeof requestContactsSchema>;
+export type iContacts = z.infer<typeof contactsSchema>;
+export type iUpdateContacts = DeepPartial<iCreateContacts>;
+export type iAllContacts = z.infer<typeof allContactsSchema>;

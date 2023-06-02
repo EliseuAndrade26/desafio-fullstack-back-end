@@ -2,12 +2,12 @@ import { z } from "zod";
 import { requestContactsSchema } from "./contacts.schemas";
 
 export const usersSchema = z.object({
-  id: z.number(),
-  fullname: z.string().max(150),
+  id: z.string(),
+  fullName: z.string().max(150),
   email: z.string().email().max(128),
-  password: z.string().max(128),
+  password: z.string().max(128).min(6),
   foneNumber: z.string().max(11),
-  conatcts: requestContactsSchema.nullish(),
+  contacts: z.array(requestContactsSchema).nullish(),
   createdAt: z.string(),
   updatedAt: z.string(),
   deletedAt: z.string().nullish(),
@@ -18,6 +18,7 @@ export const requestUsersSchema = usersSchema.omit({
   createdAt: true,
   updatedAt: true,
   deletedAt: true,
+  contacts: true,
 });
 
 export const updateUsersSchema = requestUsersSchema.partial();
